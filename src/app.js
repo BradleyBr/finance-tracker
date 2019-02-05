@@ -4,6 +4,8 @@ import { Provider } from 'react-redux'
 import AppRouter, { history } from './routers/AppRouter'
 import configureStore from './store/configureStore'
 import { login, logout } from './actions/auth'
+import { startSetExpenses } from './actions/expense'
+import { startSetIncome } from './actions/income'
 import 'normalize.css/normalize.css'
 import './styles/styles.scss'
 import 'react-dates/initialize'
@@ -13,6 +15,10 @@ import LoadingPage from './components/LoadingPage'
 
 const store = configureStore()
 
+const multiAction = () => {
+    store.dispatch(startSetExpenses())
+    store.dispatch(startSetIncome())
+}
 const jsx = (
     <Provider store={store}>
         <AppRouter />
@@ -26,6 +32,10 @@ const renderApp = () => {
     }
 }
 
+// store.dispatch(addExpense({type: 'Rent', Amount: 300}))
+// const expenses = store.getState()
+// console.log(expenses.expense)
+
 ReactDOM.render(<LoadingPage />, document.querySelector('#app'))
 
 
@@ -33,7 +43,10 @@ ReactDOM.render(<LoadingPage />, document.querySelector('#app'))
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         store.dispatch(login(user.uid))
-        renderApp()
+        store.dispatch(startSetExpenses()).then(store.dispatch(startSetIncome())).then(() => {
+                renderApp()
+            })
+        
             if (history.location.pathname === '/') {
                 history.push('/dashboard')
             }
