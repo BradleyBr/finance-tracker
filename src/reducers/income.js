@@ -14,6 +14,8 @@ export default (state = [], action) => {
             ]
         case 'SET_INCOME':
             return action.income
+        case 'EMPTY_INCOME':
+            return []
         default:
             return state
     }

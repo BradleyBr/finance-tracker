@@ -13,7 +13,9 @@ export default (state = [], action) => {
             })]
         case 'SET_EXPENSE':
             return action.expense
-            
+        
+        case 'EMPTY_EXPENSE':
+            return []
         default:
             return state
     }

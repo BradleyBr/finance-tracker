@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 import { addExpense, startAddExpense } from '../actions/expense'
 import moment from 'moment'
 
-
-const uuidv4 = require('uuid/v4')
 class ExpensePage extends React.Component {
     constructor(props) {
         super(props)
@@ -24,7 +22,6 @@ class ExpensePage extends React.Component {
         const now = moment().format('DD/MM/YYYY')
         this.setState({createdAt: now.toString()}, () => {
         this.props.startAddExpense(this.state)
-        this.props.history.push('/expenselist')
         })
       
     }
@@ -39,18 +36,26 @@ class ExpensePage extends React.Component {
     }
     render() {
         return (
-            <div>
-                <form>
-                    <select onChange={this.handleChange}>
-                        <option hidden selected disabled>type of expense</option>
-                        <option value="Rent/Mortgage">Rent/Mortgage</option>
-                        <option value="Grocery">Grocery</option>
-                        <option value="Vehicle">Vehicle</option>
-                        <option value="Restaurant">Restaurant</option>
-                        <option value="Entertainment">Entertainment</option>
-                    </select>
-                    <input placeholder="description" onChange={this.handleDescriptionChange} />
-                    <input placeholder="amount" onChange={this.handleAmountChange} />
+            <div className="expense-list-form">
+                <p>Enter your expenses here, the information will be added to your monthly record</p>
+                
+                <form className="expense-list-form__inputs">
+                    <div className="expense-list-form__inputs__flexbox">
+                        <select onChange={this.handleChange}>
+                            <option hidden selected disabled>type of expense</option>
+                            <option value="Rent/Mortgage">Rent/Mortgage</option>
+                            <option value="Grocery">Grocery</option>
+                            <option value="Vehicle">Vehicle</option>
+                            <option value="Restaurant">Restaurant</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Misc">Miscellaneous</option>
+                        </select>
+                        <input placeholder="Value" onChange={this.handleAmountChange} />
+                    </div>
+                    <div className="expense-list-form__textarea">
+                        <textarea placeholder="Memo" onChange={this.handleDescriptionChange}></textarea>
+                    </div>
+                    
                     <button onClick={this.handleSubmit}>Submit</button>
                 </form>
             </div>

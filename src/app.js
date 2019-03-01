@@ -4,21 +4,19 @@ import { Provider } from 'react-redux'
 import AppRouter, { history } from './routers/AppRouter'
 import configureStore from './store/configureStore'
 import { login, logout } from './actions/auth'
-import { startSetExpenses } from './actions/expense'
-import { startSetIncome } from './actions/income'
+import { startSetExpenses, startEmptyExpenses } from './actions/expense'
+import { startSetIncome, startEmptyIncome } from './actions/income'
 import 'normalize.css/normalize.css'
 import './styles/styles.scss'
 import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css'
 import {firebase} from  './firebase/firebase'
 import LoadingPage from './components/LoadingPage'
+import moment from 'moment'
+import { startSetRecords } from './actions/records';
 
 const store = configureStore()
 
-const multiAction = () => {
-    store.dispatch(startSetExpenses())
-    store.dispatch(startSetIncome())
-}
 const jsx = (
     <Provider store={store}>
         <AppRouter />
@@ -32,18 +30,30 @@ const renderApp = () => {
     }
 }
 
-// store.dispatch(addExpense({type: 'Rent', Amount: 300}))
-// const expenses = store.getState()
-// console.log(expenses.expense)
-
 ReactDOM.render(<LoadingPage />, document.querySelector('#app'))
-
-
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         store.dispatch(login(user.uid))
-        store.dispatch(startSetExpenses()).then(store.dispatch(startSetIncome())).then(() => {
+        store.dispatch(startSetExpenses())
+        store.dispatch(startSetIncome())
+        store.dispatch(startSetRecords()).then(() => {
+                const currentStore = store.getState()
+                const now = moment()
+                let nowTwoExpense
+                let nowTwoIncome
+                currentStore.expense.length > 0 ? nowTwoExpense = moment(currentStore.expense[0].createdAt, 'DD/MM/YYYY') : nowTwoExpense = now
+                currentStore.income.length > 0 ? nowTwoIncome = moment(currentStore.income[0].createdAt, 'DD/MM/YYYY') : nowTwoIncome = now
+                if (now.month() !== nowTwoExpense.month() ) {
+                    store.dispatch(startEmptyExpenses(currentStore.expense)).then(() => {
+                        store.dispatch(startSetRecords())
+                    })
+                }
+                if (now.month() !== nowTwoIncome.month()) {
+                    store.dispatch(startEmptyIncome(currentStore.income)).then(() => {
+                        store.dispatch(startSetRecords())
+                    })
+                }
                 renderApp()
             })
         

@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { startAddIncome } from '../actions/income'
+import moment from 'moment'
 
 
 class AddIncome extends React.Component {
@@ -8,7 +9,8 @@ class AddIncome extends React.Component {
         super(props)
         this.state = {
                 incomeDescription: '',
-                incomeAmount: ''
+                incomeAmount: '',
+                createdAt: ''
             }
 
         this.onDescriptionChange = this.onDescriptionChange.bind(this)
@@ -24,7 +26,12 @@ class AddIncome extends React.Component {
     }
     onSubmit(e) {
         e.preventDefault()
-        this.props.startAddIncome(this.state)
+        const now = moment().format('DD/MM/YYYY')
+        this.setState({createdAt: now.toString()}, () => {
+            this.props.startAddIncome(this.state)
+            this.props.history.push('/incomelist')
+        })
+        
     }
 
     render() {

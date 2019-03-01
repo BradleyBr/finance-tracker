@@ -1,0 +1,107 @@
+.expense-list-form {
+    display: flex;
+    background-color: #a1c2ff30;
+    box-shadow: 5px 5px 2px 1px rgba(0, 0, 255, 0.1);
+    margin-bottom: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+    padding-bottom: 3rem;
+    text-align: center;
+    button {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    p {
+        display: inline-block;
+        margin-top: 6rem;
+        margin-left: 1.5rem;
+        font-weight: bold;
+    }
+}
+
+.expense-list-form__inputs {
+    select {
+        font-size: 2.5rem;
+        height: 5rem;
+        margin-bottom: 2.5rem;
+    }
+    input {
+        font-size: 2.5rem;
+        height: 5rem;
+        margin-left: 1.5rem;
+    }
+    textarea {
+        height: 12.5rem;
+        width: 50rem;
+        font-size: 2.5rem;
+        resize: none;
+    }
+}
+
+.expense-list-form__textarea {
+    display: inline;
+    position: relative;
+}
+
+.expense-list-form__inputs__flexbox {
+    display: inline-flex;
+    margin-top: 3rem;
+    
+}
+
+.expense-list-container {
+    font-size: 2rem;
+    width: 75%;
+    margin-bottom: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.expense-list-container__data {
+    margin-top: 2rem;
+    background-color: #a1c2ff30;
+    box-shadow: 5px 5px 2px 1px rgba(0, 0, 255, 0.1);
+    padding-bottom: 3rem;
+}
+
+.expense-list-container__data__body {
+    background-color: $off-white;
+    width: 75%;
+    display: flex;
+    border: 1px black solid;
+    margin-bottom: 0.4rem;
+    margin-left: auto;
+    margin-right: auto;
+    p {
+        width: 21rem;
+        margin-left: 1rem;
+        margin-top: 0;
+        margin-bottom: 0;
+        border-right: 1px black solid;
+    };
+    button {
+        margin-left: auto;
+    }
+}
+
+.expense-list-container__data__body--empty {
+    text-align: center;
+    font-size:  2rem;
+    font-style: italic;
+}
+
+.expense-list-container__data__header {
+    width: 75%;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    p {
+        font-weight: bold;
+        padding-left: 2rem;
+        width: 21rem;
+    };
+    
+}
+

@@ -1,5 +1,6 @@
 import uuid from 'uuid'
 import firebase from 'firebase'
+import moment from 'moment'
 
 // ADD EXPENSE
 export const addExpense = (expense) => ({
@@ -60,6 +61,27 @@ export const startSetExpenses = () => {
                 })
             })
             dispatch(setExpense(expenses))
+        })
+    }
+}
+
+// EMPTY EXPENSE STORE
+
+export const emptyExpenses = () => ({
+    type: 'EMPTY_EXPENSE'
+})
+
+export const startEmptyExpenses = (expenses) => {
+    
+    const nowYear = moment(expenses[0].createdAt, 'DD/MM/YYYY').year()
+    const nowMonth = moment(expenses[0].createdAt, 'DD/MM/YYYY').format('MMMM')
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid
+        console.log(expenses)
+        return firebase.database().ref(`users/${uid}/records/${nowYear}/${nowMonth}`).set({expense: expenses}).then(() => {
+            return firebase.database().ref(`users/${uid}/expenses`).remove().then(() => {
+                dispatch(emptyExpenses())
+            })
         })
     }
 }

@@ -11,6 +11,14 @@ body {
     font-family: Helvetica, Arial, sans-serif;
     font-size: $m-size;
     line-height: 1.6;
+    background-color: rgba(165, 194, 240, 0.2);
+    p {
+        font-family: $lato;
+        font-size: $font-size-small;
+    }
+    h1, h2, h3 {
+       font-family: $roboto-slab; 
+    }
 }
 
 button {
