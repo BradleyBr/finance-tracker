@@ -1,5 +1,5 @@
 {
-  "name": "boilerplate-react-app",
+  "name": "finance-tracker-react-app",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -8,7 +8,7 @@
     "soft-b": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
     "dev-server": "webpack-dev-server --mode development",
     "build:dev": "webpack",
-    "build:prod": "webpack -p --env production",
+    "build:prod": "cross-env NODE_ENV=production webpack -p --env production",
     "start": "node server/server.js",
     "heroku-postbuild": "npm run build:prod"
   },

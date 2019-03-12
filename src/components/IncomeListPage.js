@@ -15,18 +15,22 @@ class IncomeList extends React.Component {
             <div className="income-list-container">
                 <AddIncomePage />
                  <div className="income-list-container__data">
-                    {this.props.income.map((income) => (
-                        <div key={income.id}>
-                            <p>Income Description: {income.incomeDescription}</p>
-                            <p>Income Amount: {income.incomeAmount}</p>
-                            <p>Date: {income.createdAt}</p>
+                    <div className="income-list-container__header">
+                    <p>Memo</p>
+                    <p>Value</p>
+                    <p>Date Entered</p>
+                    </div>
+                    {this.props.income.length > 0 ? this.props.income.map((income) => (
+                        <div key={income.id} className="income-list-container__data__body">
+                            <p>{income.incomeDescription}</p>
+                            <p>{income.incomeAmount}</p>
+                            <p>{income.createdAt}</p>
                             <button onClick={() => {
                                 this.props.startRemoveIncome(income)
-                            }}>Remove Income</button>
+                            }}>Remove</button>
                         </div>
-                    ))}
+                    )) : <p className="income-list-container__data--empty">Nothing to display, add some income!</p>}
                 </div>
-                <ArchivedIncomeList />
             </div>
         )
     }

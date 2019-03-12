@@ -15,10 +15,9 @@ class ArchivedIncomeList extends React.Component {
     
         
         const records = this.props.record
-        console.log(this.props)
 
         return (
-            <div className="archived-container">
+            <div className="archive-income-container">
                 {records[0] !== null ? 
                     records.map((snapshot) => {
                         return <ArchivedIncomeYear props={snapshot} key={uuidv4()} />

@@ -14,7 +14,7 @@
         margin-right: auto;
     }
     p {
-        display: inline-block;
+        width: 60rem;
         margin-top: 6rem;
         margin-left: 1.5rem;
         font-weight: bold;
@@ -22,20 +22,21 @@
 }
 
 .expense-list-form__inputs {
+    display: flex;
+    flex-direction: column;
+    margin-left: 3rem;
+    font-size: 2.2rem;
     select {
-        font-size: 2.5rem;
         height: 5rem;
         margin-bottom: 2.5rem;
     }
     input {
-        font-size: 2.5rem;
         height: 5rem;
         margin-left: 1.5rem;
     }
     textarea {
         height: 12.5rem;
         width: 50rem;
-        font-size: 2.5rem;
         resize: none;
     }
 }
@@ -55,6 +56,7 @@
     font-size: 2rem;
     width: 75%;
     margin-bottom: 2rem;
+    margin-top: 4rem;
     margin-left: auto;
     margin-right: auto;
 }

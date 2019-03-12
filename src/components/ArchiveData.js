@@ -8,7 +8,7 @@ export default class ArchiveData extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="archive-container">
                 <ArchivedExpenseList />
                 <ArchivedIncomeList />
             </div>

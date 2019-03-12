@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import firebase from 'firebase'
 import ArchivedExpenseYear from './ArchivedExpenseYear'
 const uuidv4 = require('uuid/v4')
 
@@ -9,16 +8,14 @@ class ArchivedExpenseList extends React.Component {
         super(props)
 
     }
-
     
     render() {
     
         
         const records = this.props.record
-        console.log(this.props)
 
         return (
-            <div className="archived-container">
+            <div className="archive-expense-container">
                 {records[0] !== null ? 
                     records.map((snapshot) => {
                         return <ArchivedExpenseYear props={snapshot} key={uuidv4()} />

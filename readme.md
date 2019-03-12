@@ -1,7 +1,4 @@
-# Git Commands
+#finance tracker
 
-git init - Create a new git repo
-git status - View the changes to your project code
-git add - Add files to staging area
-git commit - Creates a new commit with files from staging area
-git log 0 View recent commits
+The purpose of this app is to track monthly expenses and income, compare them on the
+ summary page, and to archive data on the end of the month using firebase.

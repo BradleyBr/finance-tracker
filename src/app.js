@@ -16,7 +16,7 @@ import moment from 'moment'
 import { startSetRecords } from './actions/records';
 
 const store = configureStore()
-
+console.log('This project is not yet finished. Modal needs to be added for the memos, proper input checks (no characters in number only fields) and some touch up on styling')
 const jsx = (
     <Provider store={store}>
         <AppRouter />

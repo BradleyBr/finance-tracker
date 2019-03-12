@@ -29,18 +29,18 @@ class AddIncome extends React.Component {
         const now = moment().format('DD/MM/YYYY')
         this.setState({createdAt: now.toString()}, () => {
             this.props.startAddIncome(this.state)
-            this.props.history.push('/incomelist')
         })
         
     }
 
     render() {
         return (
-            <div>
-                <form>
+            <div className="income-list-form">
+                <p>Enter your income here, the information will be added to your monthly record</p>
+                <form className="income-list-form__inputs">
                     <input placeholder="Income description" onChange={this.onDescriptionChange} />
                     <input placeholder="Income Amount" onChange={this.onAmountChange} />
-                    <button onClick={this.onSubmit}>Submit income</button>
+                    <button onClick={this.onSubmit}>Submit</button>
                 </form>
             </div>
         )

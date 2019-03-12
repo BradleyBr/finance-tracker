@@ -8,24 +8,33 @@ export default class ArchivedIncomePage extends React.Component {
     render() {
 
         const propsData = this.props.props.income
-        propsData.forEach((snapshot) => {
-            console.log(snapshot.createdAt)
-        })
-        return (
-            <div>
-                <p>Memo</p>
-                <p>Value</p>
-                <p>Date Entered</p>
-                {propsData.map((snapshot) => {
-                    return (
-                        <div key={uuidv4()}>
-                            <p>{snapshot.incomeDescription}</p>
-                            <p>{snapshot.incomeAmount}</p>
-                            <p>{snapshot.createdAt}</p>
-                        </div>
-                    )
-                })}
-            </div>
-        )
-    }
+
+        if (propsData) {
+            propsData.forEach((snapshot) => {
+            })
+            return (
+                <div className="archive-income__body">
+                    <div className="archive-income__header">
+                        <p>Memo</p>
+                        <p>Value</p>
+                        <p>Date Entered</p>
+                    </div>  
+                    {propsData.map((snapshot) => {
+                        return (
+                            <div className="archive-income__data" key={uuidv4()}>
+                                <p>{snapshot.incomeDescription}</p>
+                                <p>{snapshot.incomeAmount}</p>
+                                <p>{snapshot.createdAt}</p>
+                            </div>
+                        )
+                    })}
+                </div>
+            )
+        } else {
+            return (
+                <p>No income data recorded this month</p>
+            )
+        }
+        } 
+       
 }
